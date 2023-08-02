@@ -23,9 +23,13 @@ Los plugins configurados en el momento de desarrollo en VSCode son los siguiente
 
 Seguir los pasos de instalación del sitio oficial [nodejs.org](https://nodejs.org/en/)
 
-## HTML
+## Contenidos
 
-[Contenido del curso](https://github.com/nmarsollier/desarrollo_software/html)
+[HTML](https://github.com/nmarsollier/desarrollo_software/tree/main/html)
+
+[Javascript](https://github.com/nmarsollier/desarrollo_software/tree/main/javascript)
+
+[Typescript](https://github.com/nmarsollier/desarrollo_software/tree/main/type_script)
 
 ## GitHub
 
