@@ -9,6 +9,8 @@ Email Profesores : nmarsollier@gmail.com
 
 ## Guía de Instalación General
 
+[Video Tutorial](https://youtu.be/e9vgnu4Mk90)
+
 El proyecto se desarrollo con [Visual Studio Code](https://code.visualstudio.com/download), podrían utilizarse alternativas como [Atom](https://atom.io/), [Sublime](https://www.sublimetext.com/download), [Eclipse](http://www.eclipse.org/downloads/).
 
 Los plugins configurados en el momento de desarrollo en VSCode son los siguientes :
