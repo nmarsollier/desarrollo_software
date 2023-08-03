@@ -19,7 +19,7 @@ Los plugins configurados en el momento de desarrollo en VSCode son los siguiente
 - __Typescript React code snippets__ by infeng
 
 
-### Node 10
+### Node 18
 
 Seguir los pasos de instalación del sitio oficial [nodejs.org](https://nodejs.org/en/)
 
