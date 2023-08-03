@@ -38,9 +38,13 @@ Antes de adentrarnos en el mundo Git, necesitamos comprender algunos conceptos b
 La guia oficial la encontramos en 
 
 [Quickstart](https://docs.github.com/es/get-started/quickstart)
+
     [Intro](https://docs.github.com/es/get-started/quickstart/hello-world)
+
     [Configuracion](https://docs.github.com/es/get-started/quickstart/set-up-git)
+    
     [Crear un repo](https://docs.github.com/es/get-started/quickstart/create-a-repo)
+    
     [Flujo de trabajo](https://docs.github.com/es/get-started/quickstart/github-flow)
 
 Recomiendo instalar GitHub Desktop.
