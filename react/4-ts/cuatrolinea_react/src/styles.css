@@ -1,0 +1,33 @@
+.global_title {
+  text-align: center;
+}
+.global_content {
+  max-width: 400px;
+}
+
+.user1{
+  background-image: url("/public/assets/player1.png");
+  width: 40px;
+  height: 40px;
+  background-position: center;
+  background-repeat: space;
+}
+.user2{
+  background-image: url("/public/assets/player2.png");
+  width: 40px;
+  height: 40px;
+  background-position: center;
+  background-repeat: space;
+}
+.emptyCell {
+  background-color: beige;
+  width: 40px;
+  height: 40px;
+}
+.playButon {
+  background-image: url("/public/assets/play.png");
+  width: 40px;
+  height: 40px;
+  background-position: center;
+  background-repeat: space;
+}
