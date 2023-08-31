@@ -1,12 +1,13 @@
 import React from "react"
+import BSButton from 'react-bootstrap/Button'
 
 export default function FormButton(props: {
   label: string
   onClick: () => any
 }) {
   return (
-    <button className="btn btn-light" onClick={props.onClick}>
+    <BSButton variant="secondary" onClick={props.onClick}>
       {props.label}
-    </button>
+    </BSButton>
   )
 }

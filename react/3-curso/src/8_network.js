@@ -22,7 +22,7 @@ export default function NetworkCall() {
 
     useEffect(() => {
         componentDidMount()
-    })
+    }, [])
 
     return (
         <div>

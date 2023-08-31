@@ -1,6 +1,7 @@
 import React from "react"
-import * as ErrorClass from "./ErrorClass"
-import ErrorLabel from "./ErrorLabel"
+import BSForm from 'react-bootstrap/Form'
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 export default function FormInput(props: {
   label: string
@@ -10,16 +11,18 @@ export default function FormInput(props: {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => any
 }) {
   return (
-    <div className="form-group">
-      <label>{props.label}</label>
-      <input
-        id={props.name}
-        type="text"
-        value={props.value}
-        onChange={props.onChange}
-        className={ErrorClass.getErrorClass(props.errorText, "form-control")}
-      ></input>
-      <ErrorLabel message={props.errorText} />
-    </div>
+    <BSForm.Group controlId={props.name} >
+      <BSForm.Label >{props.label}</BSForm.Label>
+      <InputGroup hasValidation>
+
+        <BSForm.Control
+          type="text"
+          value={props.value}
+          onChange={props.onChange}
+          isValid={props.errorText === undefined}
+        />
+        <BSForm.Control.Feedback type="invalid">{props.errorText}</BSForm.Control.Feedback>
+      </InputGroup>
+    </BSForm.Group>
   )
 }
