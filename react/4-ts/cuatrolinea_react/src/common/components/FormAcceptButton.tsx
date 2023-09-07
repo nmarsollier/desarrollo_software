@@ -1,12 +1,13 @@
 import React from "react"
+import BSButton from 'react-bootstrap/Button'
 
 export default function FormAcceptButton(props: {
   label: string
   onClick: () => any
 }) {
   return (
-    <button className="btn btn-primary" onClick={props.onClick}>
+    <BSButton variant="primary" onClick={props.onClick}>
       {props.label}
-    </button>
+    </BSButton>
   )
 }

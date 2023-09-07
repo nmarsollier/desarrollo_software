@@ -23,7 +23,7 @@ export default function Clock() {
         return () => {
             clearInterval(timerID);
         }
-    })
+    }, [])
 
     return (
         <div>
