@@ -1,14 +1,14 @@
-package com.desarrollo.cuatrolinea.security.pojo;
+package com.desarrollo.cuatrolinea.security.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ChangePasswordData {
+public class ChangePasswordDTO {
     public String newPassword;
     public String currentPassword;
 
     @JsonCreator
-    public ChangePasswordData(
+    public ChangePasswordDTO(
             @JsonProperty(required = true) String currentPassword,
             @JsonProperty(required = true) String newPassword
     ) {

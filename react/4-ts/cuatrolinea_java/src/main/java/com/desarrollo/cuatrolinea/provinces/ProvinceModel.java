@@ -1,12 +1,10 @@
 package com.desarrollo.cuatrolinea.provinces;
 
-import com.desarrollo.cuatrolinea.provinces.model.Province;
-import com.desarrollo.cuatrolinea.provinces.model.ProvinceRepository;
-import com.desarrollo.cuatrolinea.provinces.pojo.NewProvinceData;
-import com.desarrollo.cuatrolinea.provinces.pojo.ProvinceDTO;
-import com.desarrollo.cuatrolinea.security.AuthValidation;
+import com.desarrollo.cuatrolinea.provinces.model.NewProvinceDTO;
+import com.desarrollo.cuatrolinea.provinces.model.ProvinceDTO;
+import com.desarrollo.cuatrolinea.security.AuthValidationService;
 import com.desarrollo.cuatrolinea.security.model.TokenRepository;
-import com.desarrollo.cuatrolinea.security.model.UserRepository;
+import com.desarrollo.cuatrolinea.security.model.User;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -14,21 +12,16 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.StreamSupport;
 
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/province")
 public class ProvinceModel {
     @Autowired
-    UserRepository userRepository;
+    ProvinceService provinceService;
 
     @Autowired
     TokenRepository tokenRepository;
-
-    @Autowired
-    ProvinceRepository provinceRepository;
-
 
     @Tag(name = "Provinces", description = "List all provinces")
     @GetMapping(
@@ -36,10 +29,9 @@ public class ProvinceModel {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public List<ProvinceDTO> list(@RequestHeader(HttpHeaders.AUTHORIZATION) String auth) {
-        AuthValidation.validateAuthUser(tokenRepository, auth);
+        User user = AuthValidationService.validateAuthUser(tokenRepository, auth);
 
-        return StreamSupport.stream(provinceRepository.findAll().spliterator(), false)
-                .map(ProvinceDTO::new).toList();
+        return provinceService.list(user);
     }
 
     @Tag(name = "Provinces", description = "Create new Province")
@@ -49,10 +41,10 @@ public class ProvinceModel {
     )
     public void create(
             @RequestHeader(HttpHeaders.AUTHORIZATION) String auth,
-            @RequestBody NewProvinceData newProvinceData
+            @RequestBody NewProvinceDTO newProvinceDTO
     ) {
-        AuthValidation.validateAuthUser(tokenRepository, auth);
+        AuthValidationService.validateAuthUser(tokenRepository, auth);
 
-        provinceRepository.save(new Province(newProvinceData.name));
+        provinceService.create(newProvinceDTO);
     }
 }

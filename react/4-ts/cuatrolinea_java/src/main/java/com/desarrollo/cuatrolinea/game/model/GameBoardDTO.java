@@ -1,9 +1,9 @@
-package com.desarrollo.cuatrolinea.game.pojo;
+package com.desarrollo.cuatrolinea.game.model;
 
 import com.desarrollo.cuatrolinea.game.model.Game;
 import org.springframework.data.annotation.Id;
 
-public class GameBoard {
+public class GameBoardDTO {
     @Id
     public String id;
 
@@ -18,7 +18,7 @@ public class GameBoard {
 
     public boolean match;
 
-    public GameBoard(Game document) {
+    public GameBoardDTO(Game document) {
         this.id = document.id;
         this.board = new String[document.board.length][];
         for (int i = 0; i < document.board.length; i++) {

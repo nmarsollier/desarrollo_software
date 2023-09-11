@@ -11,7 +11,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.util.Objects;
 
 @Service
-public class AuthValidation {
+public class AuthValidationService {
     public static Token validateAuth(TokenRepository tokenRepository, String authHeader) {
         Token token = tokenRepository.findById(authHeader.substring(7)).orElseThrow(
                 () -> new HttpClientErrorException(HttpStatusCode.valueOf(401), "Invalid session")
@@ -23,7 +23,7 @@ public class AuthValidation {
     }
 
     public static User validateAuthUser(TokenRepository tokenRepository, String authHeader) {
-        Token token = AuthValidation.validateAuth(tokenRepository, authHeader);
+        Token token = AuthValidationService.validateAuth(tokenRepository, authHeader);
 
         return Objects.requireNonNull(token.getUser());
     }

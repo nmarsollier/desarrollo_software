@@ -1,9 +1,9 @@
-package com.desarrollo.cuatrolinea.profile.pojo;
+package com.desarrollo.cuatrolinea.profile.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ProfileData {
+public class ProfileUpdateDTO {
 
     public String name;
 
@@ -18,7 +18,7 @@ public class ProfileData {
     public final String phone;
 
     @JsonCreator
-    public ProfileData(
+    public ProfileUpdateDTO(
             @JsonProperty(required = true) String name,
             @JsonProperty() String email,
             @JsonProperty() String address,

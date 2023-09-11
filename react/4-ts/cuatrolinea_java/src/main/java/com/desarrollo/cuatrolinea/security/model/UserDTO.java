@@ -1,4 +1,4 @@
-package com.desarrollo.cuatrolinea.security.pojo;
+package com.desarrollo.cuatrolinea.security.model;
 
 import com.desarrollo.cuatrolinea.security.model.User;
 

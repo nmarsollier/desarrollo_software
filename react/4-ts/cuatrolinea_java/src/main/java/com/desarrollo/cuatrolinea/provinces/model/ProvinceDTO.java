@@ -1,4 +1,4 @@
-package com.desarrollo.cuatrolinea.provinces.pojo;
+package com.desarrollo.cuatrolinea.provinces.model;
 
 import com.desarrollo.cuatrolinea.provinces.model.Province;
 
