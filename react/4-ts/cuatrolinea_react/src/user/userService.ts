@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios"
-import { environment } from "../app/environment/environment"
+import { environment } from "../environment/environment"
 import { updateSessionToken, cleanupSessionToken } from "../store/tokenStore"
 import { cleanupSessionUser, updateSessionUser } from "../store/userStore"
 

@@ -1,7 +1,5 @@
 import React from "react"
-import BSForm from 'react-bootstrap/Form'
-import FloatingLabel from 'react-bootstrap/FloatingLabel'
-import InputGroup from 'react-bootstrap/InputGroup'
+import ErrorLabel from "./ErrorLabel"
 
 export default function FormInput(props: {
   label: string
@@ -10,19 +8,19 @@ export default function FormInput(props: {
   value?: string | undefined
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => any
 }) {
-  return (
-    <BSForm.Group controlId={props.name} >
-      <BSForm.Label >{props.label}</BSForm.Label>
-      <InputGroup hasValidation>
+  const errorStyle = props.errorText ? "is-invalid" : ""
 
-        <BSForm.Control
-          type="text"
-          value={props.value}
-          onChange={props.onChange}
-          isValid={props.errorText === undefined}
-        />
-        <BSForm.Control.Feedback type="invalid">{props.errorText}</BSForm.Control.Feedback>
-      </InputGroup>
-    </BSForm.Group>
+  return (
+    <div className="form-group">
+      <label>{props.label}</label>
+      <input
+        id={props.name}
+        type="text"
+        value={props.value}
+        onChange={props.onChange}
+        className={`${errorStyle} form-control`}
+      ></input>
+      <ErrorLabel message={props.errorText} />
+    </div>
   )
 }

@@ -16,7 +16,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/profile")
 public class ProfileRestController {
     @Autowired
-    ProfileService profileService;
+    AuthValidationService authValidationService;
+
+    @Autowired
+    UpdateProfileService updateProfileService;
+
+    @Autowired
+    GetCurrentProfileService getCurrentProfileService;
 
     @Autowired
     TokenRepository tokenRepository;
@@ -30,9 +36,9 @@ public class ProfileRestController {
             @RequestHeader(HttpHeaders.AUTHORIZATION) String auth,
             @RequestBody ProfileUpdateDTO profileUpdateDTO
     ) {
-        User user = AuthValidationService.validateAuthUser(tokenRepository, auth);
+        User user = authValidationService.validateAuthUser(tokenRepository, auth);
 
-        return profileService.update(user, profileUpdateDTO);
+        return updateProfileService.update(user, profileUpdateDTO);
     }
 
     @Tag(name = "Profile", description = "Get current user profile")
@@ -41,7 +47,7 @@ public class ProfileRestController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ProfileDTO currentUser(@RequestHeader(HttpHeaders.AUTHORIZATION) String auth) {
-        User user = AuthValidationService.validateAuthUser(tokenRepository, auth);
-        return profileService.currentProfile(user);
+        User user = authValidationService.validateAuthUser(tokenRepository, auth);
+        return getCurrentProfileService.currentProfile(user);
     }
 }

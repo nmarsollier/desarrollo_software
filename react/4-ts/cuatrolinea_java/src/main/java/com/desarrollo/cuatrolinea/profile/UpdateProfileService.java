@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProfileService {
+public class UpdateProfileService {
 
     @Autowired
     ProfileRepository profileRepository;
@@ -43,11 +43,6 @@ public class ProfileService {
 
         profileRepository.save(profile);
 
-        return new ProfileDTO(user, profile);
-    }
-
-    public ProfileDTO currentProfile(User user) {
-        Profile profile = profileRepository.findItemByUser(user);
         return new ProfileDTO(user, profile);
     }
 }

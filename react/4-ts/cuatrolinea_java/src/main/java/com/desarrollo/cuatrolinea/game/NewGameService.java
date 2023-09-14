@@ -5,15 +5,12 @@ import com.desarrollo.cuatrolinea.game.model.GameBoardDTO;
 import com.desarrollo.cuatrolinea.game.model.GameRepository;
 import com.desarrollo.cuatrolinea.security.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 @Service
-public class GameService {
+public class NewGameService {
     @Autowired
     GameRepository gameRepository;
-
 
     public GameBoardDTO newGame(User user) {
         Game game = gameRepository.findItemFree(user.name).stream().findFirst().orElse(null);
@@ -29,21 +26,4 @@ public class GameService {
 
         return new GameBoardDTO(game);
     }
-
-    public GameBoardDTO getBoard(String id) {
-        Game existingGame = gameRepository.findById(id).orElseThrow();
-        return new GameBoardDTO(existingGame);
-    }
-
-    public GameBoardDTO play(User user, String gameId, int column) {
-        Game game = gameRepository.findById(gameId).orElseThrow();
-        if (!game.user2.name.equals(user.name) && !game.user1.name.equals(user.name))
-            throw new HttpClientErrorException(HttpStatusCode.valueOf(404));
-
-        game.play(user.name, column);
-        game = gameRepository.save(game);
-
-        return new GameBoardDTO(game);
-    }
-
 }

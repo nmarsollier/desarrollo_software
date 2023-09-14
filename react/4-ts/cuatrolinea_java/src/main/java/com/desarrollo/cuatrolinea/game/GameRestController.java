@@ -15,10 +15,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/game")
 public class GameRestController {
     @Autowired
+    AuthValidationService authValidationService;
+
+    @Autowired
     TokenRepository tokenRepository;
 
     @Autowired
-    GameService gameService;
+    NewGameService newGameService;
+
+    @Autowired
+    GetCurrentBoardService getCurrentBoardService;
+
+
+    @Autowired
+    PlayService playService;
 
     @Tag(name = "Game", description = "Play new game")
     @PostMapping(
@@ -28,9 +38,9 @@ public class GameRestController {
     public GameBoardDTO newGame(
             @RequestHeader(HttpHeaders.AUTHORIZATION) String auth
     ) {
-        User user = AuthValidationService.validateAuthUser(tokenRepository, auth);
+        User user = authValidationService.validateAuthUser(tokenRepository, auth);
 
-        return gameService.newGame(user);
+        return newGameService.newGame(user);
     }
 
     @Tag(name = "Game", description = "Gets the current board")
@@ -42,9 +52,9 @@ public class GameRestController {
             @PathVariable("id") String id,
             @RequestHeader(HttpHeaders.AUTHORIZATION) String auth
     ) {
-        AuthValidationService.validateAuthUser(tokenRepository, auth);
+        authValidationService.validateAuthUser(tokenRepository, auth);
 
-        return gameService.getBoard(id);
+        return getCurrentBoardService.getCurrentBoard(id);
     }
 
     @Tag(name = "Game", description = "Make a play")
@@ -57,8 +67,8 @@ public class GameRestController {
             @RequestParam("column") int column,
             @RequestHeader(HttpHeaders.AUTHORIZATION) String auth
     ) {
-        User user = AuthValidationService.validateAuthUser(tokenRepository, auth);
+        User user = authValidationService.validateAuthUser(tokenRepository, auth);
 
-        return gameService.play(user, id, column);
+        return playService.play(user, id, column);
     }
 }

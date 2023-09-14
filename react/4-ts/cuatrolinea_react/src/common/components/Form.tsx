@@ -1,15 +1,10 @@
 import React from "react"
-import BSForm from 'react-bootstrap/Form'
-import BSStack from 'react-bootstrap/Stack'
+import { RouteProps } from "react-router-dom"
 
-export default function Form(props: {
-    children?: React.ReactNode
-}) {
+export default function Form(props: RouteProps) {
     return (
-        <BSForm onSubmit={(e) => e.preventDefault()} noValidate>
-            <BSStack gap={2} direction="vertical">
-                {props.children}
-            </BSStack>
-        </BSForm >
+        <form onSubmit={(e) => e.preventDefault()}>
+            {props.children}
+        </form >
     )
 }

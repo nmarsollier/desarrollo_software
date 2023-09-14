@@ -12,7 +12,13 @@ import java.util.Objects;
 
 @Service
 public class AuthValidationService {
-    public static Token validateAuth(TokenRepository tokenRepository, String authHeader) {
+    public User validateAuthUser(TokenRepository tokenRepository, String authHeader) {
+        Token token = validateAuth(tokenRepository, authHeader);
+
+        return Objects.requireNonNull(token.getUser());
+    }
+
+    private Token validateAuth(TokenRepository tokenRepository, String authHeader) {
         Token token = tokenRepository.findById(authHeader.substring(7)).orElseThrow(
                 () -> new HttpClientErrorException(HttpStatusCode.valueOf(401), "Invalid session")
         );
@@ -20,11 +26,5 @@ public class AuthValidationService {
             throw new HttpClientErrorException(HttpStatusCode.valueOf(404), "Invalid password");
         }
         return token;
-    }
-
-    public static User validateAuthUser(TokenRepository tokenRepository, String authHeader) {
-        Token token = AuthValidationService.validateAuth(tokenRepository, authHeader);
-
-        return Objects.requireNonNull(token.getUser());
     }
 }

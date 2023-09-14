@@ -16,9 +16,15 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/province")
-public class ProvinceModel {
+public class ProvinceRestController {
     @Autowired
-    ProvinceService provinceService;
+    AuthValidationService authValidationService;
+
+    @Autowired
+    CreateProvinceService createProvinceService;
+
+    @Autowired
+    ListProvinceService listProvinceService;
 
     @Autowired
     TokenRepository tokenRepository;
@@ -29,9 +35,9 @@ public class ProvinceModel {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public List<ProvinceDTO> list(@RequestHeader(HttpHeaders.AUTHORIZATION) String auth) {
-        User user = AuthValidationService.validateAuthUser(tokenRepository, auth);
+        User user = authValidationService.validateAuthUser(tokenRepository, auth);
 
-        return provinceService.list(user);
+        return listProvinceService.list(user);
     }
 
     @Tag(name = "Provinces", description = "Create new Province")
@@ -43,8 +49,8 @@ public class ProvinceModel {
             @RequestHeader(HttpHeaders.AUTHORIZATION) String auth,
             @RequestBody NewProvinceDTO newProvinceDTO
     ) {
-        AuthValidationService.validateAuthUser(tokenRepository, auth);
+        authValidationService.validateAuthUser(tokenRepository, auth);
 
-        provinceService.create(newProvinceDTO);
+        createProvinceService.create(newProvinceDTO);
     }
 }

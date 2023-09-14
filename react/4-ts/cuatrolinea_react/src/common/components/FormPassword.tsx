@@ -1,6 +1,5 @@
 import React from "react"
-import BSForm from 'react-bootstrap/Form'
-import FloatingLabel from 'react-bootstrap/FloatingLabel'
+import ErrorLabel from "./ErrorLabel"
 
 export default function FormPassword(props: {
   label: string
@@ -9,14 +8,19 @@ export default function FormPassword(props: {
   value?: string | undefined
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => any
 }) {
+  const errorStyle = props.errorText ? "is-invalid" : ""
+
   return (
-    <FloatingLabel controlId={props.name} label={props.label}>
-      <BSForm.Control
+    <div className="form-group">
+      <label>{props.label}</label>
+      <input
+        id={props.name}
         type="password"
         value={props.value}
         onChange={props.onChange}
-      />
-      <BSForm.Control.Feedback type="invalid">{props.errorText}</BSForm.Control.Feedback>
-    </FloatingLabel>
+        className={`${errorStyle} form-control`}
+      ></input>
+      <ErrorLabel message={props.errorText} />
+    </div>
   )
 }

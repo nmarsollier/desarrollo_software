@@ -12,13 +12,25 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/user")
 public class AuthRestController {
     @Autowired
-    AuthValidationService validation;
+    AuthValidationService authValidationService;
 
     @Autowired
-    AuthService authService;
+    ChangePasswordService changePasswordService;
+
+    @Autowired
+    GetCurrentUserService getCurrentUserService;
+
+    @Autowired
+    LoginService loginService;
+
+    @Autowired
+    LogoutService logoutService;
 
     @Autowired
     TokenRepository tokenRepository;
+
+    @Autowired
+    RegisterUserService registerUserService;
 
     @Tag(name = "User",
             description = "Register a new user in the paltform")
@@ -28,7 +40,7 @@ public class AuthRestController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public TokenDTO register(@RequestBody RegisterUserDTO registerUserDTO) {
-        return authService.register(registerUserDTO);
+        return registerUserService.register(registerUserDTO);
     }
 
     @Tag(name = "User",
@@ -38,8 +50,8 @@ public class AuthRestController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public UserDTO currentUser(@RequestHeader(HttpHeaders.AUTHORIZATION) String auth) {
-        User user = validation.validateAuthUser(tokenRepository, auth);
-        return authService.currentUser(user);
+        User user = authValidationService.validateAuthUser(tokenRepository, auth);
+        return getCurrentUserService.currentUser(user);
     }
 
     @Tag(name = "User", description = "Login in the app")
@@ -48,7 +60,7 @@ public class AuthRestController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     TokenDTO login(@RequestBody RegisterUserDTO registerUserDTO) {
-        return authService.login(registerUserDTO);
+        return loginService.login(registerUserDTO);
     }
 
     @Tag(name = "User", description = "Change current user password")
@@ -60,8 +72,8 @@ public class AuthRestController {
             @RequestHeader(HttpHeaders.AUTHORIZATION) String auth,
             @RequestBody ChangePasswordDTO changePasswordDTO
     ) {
-        User user = AuthValidationService.validateAuthUser(tokenRepository, auth);
-        authService.changePassword(user, changePasswordDTO);
+        User user = authValidationService.validateAuthUser(tokenRepository, auth);
+        changePasswordService.changePassword(user, changePasswordDTO);
     }
 
     @Tag(name = "User", description = "Logout current user")
@@ -70,6 +82,7 @@ public class AuthRestController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     void logout(@RequestHeader(HttpHeaders.AUTHORIZATION) String auth) {
-        authService.logout(auth);
+
+        logoutService.logout(auth);
     }
 }

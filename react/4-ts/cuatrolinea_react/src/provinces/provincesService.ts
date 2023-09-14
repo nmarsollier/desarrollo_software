@@ -1,5 +1,5 @@
 import axios from "axios"
-import { environment } from "../app/environment/environment"
+import { environment } from "../environment/environment"
 
 export interface Province {
   id: string

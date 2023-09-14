@@ -1,7 +1,5 @@
 package com.desarrollo.cuatrolinea.provinces.model;
 
-import com.desarrollo.cuatrolinea.provinces.model.Province;
-
 public class ProvinceDTO {
     public String id;
 
