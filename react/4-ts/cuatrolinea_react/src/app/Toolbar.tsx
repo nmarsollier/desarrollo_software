@@ -1,7 +1,7 @@
 import React from "react"
 import "./Toolbar.css"
-import { environment } from "../environment/environment"
-import { useSessionUser } from "../store/userStore"
+import { environment } from "../common/environment/environment"
+import { useSessionUser } from "../sharedStores/userStore"
 
 export default function Toolbar() {
   const user = useSessionUser()

@@ -7,9 +7,12 @@ import FormButton from "../common/components/FormButton"
 import FormButtonBar from "../common/components/FormButtonBar"
 import FormLabel from "../common/components/FormLabel"
 import FormTitle from "../common/components/FormTitle"
+import { useSessionUser } from "../sharedStores/userStore"
 import "../styles.css"
-import { Board, getBoard, newGame, play } from "./gameService"
-import { useSessionUser } from "../store/userStore"
+import { Board } from "./model/commonInterfaces"
+import { getBoard } from "./model/getBoardService"
+import { newGame } from "./model/newGameService"
+import { play } from "./model/playService"
 
 interface ScreenErrors {
     generic?: string | undefined,
@@ -86,7 +89,7 @@ export default function StateInfo() {
     function startWaiting() {
         clearIntervals()
         const tmp = setInterval(
-            () =>  void waitPlayer(),
+            () => void waitPlayer(),
             1000
         )
         interv = tmp

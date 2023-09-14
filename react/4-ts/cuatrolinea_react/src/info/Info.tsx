@@ -1,8 +1,8 @@
 import React from "react"
 import Form from "../common/components/Form"
 import FormTitle from "../common/components/FormTitle"
-import { useSessionUser } from "../store/userStore"
-import { useSessionToken } from "../store/tokenStore"
+import { useSessionUser } from "../sharedStores/userStore"
+import { useSessionToken } from "../sharedStores/tokenStore"
 
 export default function StateInfo() {
     const user = useSessionUser()

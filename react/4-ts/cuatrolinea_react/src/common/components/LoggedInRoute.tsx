@@ -1,6 +1,6 @@
 import React from "react"
 import { Navigate } from 'react-router-dom'
-import { useSessionToken } from "../../store/tokenStore"
+import { useSessionToken } from "../../sharedStores/tokenStore"
 import { FC } from 'react'
 
 

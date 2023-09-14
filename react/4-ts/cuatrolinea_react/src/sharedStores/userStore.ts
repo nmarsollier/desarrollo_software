@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react"
 import { BehaviorSubject } from "rxjs"
-import { User } from "../user/userService"
+import { User } from "../user/model/commonInterfaces"
 
 const userSubject = new BehaviorSubject<User | undefined>(undefined)
 

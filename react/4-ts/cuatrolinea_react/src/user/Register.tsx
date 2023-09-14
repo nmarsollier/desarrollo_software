@@ -10,7 +10,7 @@ import FormPassword from "../common/components/FormPassword"
 import FormTitle from "../common/components/FormTitle"
 import GlobalContent from "../common/components/GlobalContent"
 import "../styles.css"
-import { newUser } from "./userService"
+import { newUser } from "./model/newUserService"
 
 interface ScreenErrors {
   name?: string | undefined,

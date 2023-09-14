@@ -1,7 +1,7 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
+import { logout } from "../user/model/logoutService"
 import "./Menu.css"
-import { logout } from "../user/userService"
 
 export default function MainMenu() {
   const logoutApp = () => {

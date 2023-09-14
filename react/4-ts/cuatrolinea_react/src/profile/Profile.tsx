@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import DangerLabel from "../common/components/DangerLabel"
+import { getErrorClass } from "../common/components/ErrorClass"
 import ErrorLabel from "../common/components/ErrorLabel"
 import Form from "../common/components/Form"
 import FormAcceptButton from "../common/components/FormAcceptButton"
@@ -10,13 +11,10 @@ import FormImageUpload from "../common/components/FormImageUpload"
 import FormInput from "../common/components/FormInput"
 import FormTitle from "../common/components/FormTitle"
 import GlobalContent from "../common/components/GlobalContent"
-import { getProvinces, Province } from "../provinces/provincesService"
+import { Province, getProvinces } from "../provinces/model/getProvincesService"
 import "../styles.css"
-import {
-  getCurrentProfile,
-  updateProfile,
-} from "./profileService"
-import { getErrorClass } from "../common/components/ErrorClass"
+import { getCurrentProfile } from "./model/getCurrentProfileService"
+import { updateProfile, } from "./model/updateProfileService"
 
 interface ScreenErrors {
   address?: string | undefined,
@@ -52,7 +50,7 @@ export default function Profile() {
     try {
       const result = await getCurrentProfile()
 
-      if(!result) return
+      if (!result) return
       setAddress(result.address)
       setEmail(result.email)
       setName(result.name)

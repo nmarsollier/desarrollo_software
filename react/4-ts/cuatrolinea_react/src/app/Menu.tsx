@@ -2,7 +2,7 @@ import React from "react"
 import LoginMenu from "./LoginMenu"
 import MainMenu from "./MainMenu"
 import "./Menu.css"
-import { useSessionUser } from "../store/userStore"
+import { useSessionUser } from "../sharedStores/userStore"
 
 export default function Menu() {
   const user = useSessionUser()

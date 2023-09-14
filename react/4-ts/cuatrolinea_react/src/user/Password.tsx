@@ -9,7 +9,7 @@ import FormPassword from "../common/components/FormPassword"
 import FormTitle from "../common/components/FormTitle"
 import GlobalContent from "../common/components/GlobalContent"
 import "../styles.css"
-import { changePassword } from "./userService"
+import { changePassword } from "./model/changePasswordService"
 
 interface ScreenErrors {
     currentPassword?: string | undefined,
