@@ -71,7 +71,7 @@ export default function Profile() {
       err.email = "No puede esta vacío"
     }
     setErrors(err)
-    if (hasErrors()) {
+    if (hasErrors(err)) {
       return
     }
 
@@ -95,8 +95,8 @@ export default function Profile() {
     void loadProfile()
   }, [])
 
-  function hasErrors(): boolean {
-    if (errors.address || errors.email || errors.name || errors.phone || errors.provinceId || errors.picture || errors.generic)
+  function hasErrors(err: ScreenErrors): boolean {
+    if (err.address || err.email || err.name || err.phone || err.provinceId || err.picture || err.generic)
       return true
     else
       return false

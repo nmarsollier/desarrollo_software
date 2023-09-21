@@ -38,7 +38,7 @@ export default function Register() {
       err.password2 = "Las contraseñas no coinciden"
     }
     setErrors(err)
-    if (hasErrors()) {
+    if (hasErrors(err)) {
       return
     }
 
@@ -53,8 +53,8 @@ export default function Register() {
     }
   }
 
-  function hasErrors(): boolean {
-    if (errors.name || errors.password || errors.password2 || errors.generic)
+  function hasErrors(err: ScreenErrors): boolean {
+    if (err.name || err.password || err.password2 || err.generic)
       return true
     else
       return false
